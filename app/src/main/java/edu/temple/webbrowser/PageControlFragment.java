@@ -80,7 +80,7 @@ public class PageControlFragment extends Fragment {
         return v;
     }
 
-    public void updateText(String text){
+    public void setText(String text){
         URLbar.setText(text);
     }
 

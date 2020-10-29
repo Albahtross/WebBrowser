@@ -21,7 +21,6 @@
             android:layout_marginTop="11dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/enter_url"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

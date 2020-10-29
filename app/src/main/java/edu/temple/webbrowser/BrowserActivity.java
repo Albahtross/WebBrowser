@@ -8,7 +8,7 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.webkit.URLUtil;
 
-public class BrowserActivity extends AppCompatActivity implements PageControlFragment.clickBackInterface, PageControlFragment.visitPageInterface, PageControlFragment.clickNextInterface{
+public class BrowserActivity extends AppCompatActivity implements PageControlFragment.clickBackInterface, PageControlFragment.visitPageInterface, PageControlFragment.clickNextInterface, PageViewerFragment.updateText{
 
         PageControlFragment controlFrag;
         PageViewerFragment viewFrag;
@@ -34,18 +34,20 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     @Override
     public void clickBack(){
         viewFrag.clickBack();
-        controlFrag.updateText(viewFrag.getURL());
     }
     @Override
     public void clickNext(){
         viewFrag.clickNext();
-        controlFrag.updateText(viewFrag.getURL());
     }
 
     @Override
     public void visitPage(String url){
         viewFrag.visitPage(url);
-        controlFrag.updateText(viewFrag.getURL());
+    }
+
+    @Override
+    public void updateText(){
+        controlFrag.setText(viewFrag.getURL());
     }
 
 

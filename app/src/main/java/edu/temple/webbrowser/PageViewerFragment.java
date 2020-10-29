@@ -48,7 +48,7 @@ public class PageViewerFragment extends Fragment{
             }
             @Override
             public void onPageFinished(WebView view, String url){
-
+                ((PageViewerFragment.updateText) getActivity()).updateText();
             }
 
         });
@@ -77,5 +77,9 @@ public class PageViewerFragment extends Fragment{
             url = "https://" + url;
         }
         WebBrowser.loadUrl(url);
+    }
+
+    public interface updateText{
+        void updateText();
     }
 }
