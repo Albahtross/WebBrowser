@@ -19,10 +19,10 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         setContentView(R.layout.browser_activity);
 
         if(controlFrag==null){
-        controlFrag=new PageControlFragment();
+            controlFrag=new PageControlFragment();
         }
         if(viewFrag==null){
-        viewFrag=new PageViewerFragment();
+            viewFrag=new PageViewerFragment();
         }
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();

@@ -6,24 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".BrowserActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/page_control"
-        android:layout_width="359dp"
-        android:layout_height="285dp"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="47dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="63dp"
+        app:layout_constraintBottom_toTopOf="@+id/page_viewer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <fragment
-            android:id="@+id/fragment"
+            android:id="@+id/control_frag"
             android:name="edu.temple.webbrowser.PageControlFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -31,13 +28,18 @@
 
     <FrameLayout
         android:id="@+id/page_viewer"
-        android:layout_width="347dp"
-        android:layout_height="301dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="395dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/page_control">
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/view_frag"
             android:name="edu.temple.webbrowser.PageViewerFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
