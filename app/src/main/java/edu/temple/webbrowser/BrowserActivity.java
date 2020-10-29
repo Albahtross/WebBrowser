@@ -27,7 +27,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();
         transaction.add(R.id.page_control,controlFrag);
-        transaction.add(R.id.page_viewer,viewFrag);
+        transaction.add(R.id.page_viewer, viewFrag);
         transaction.commit();
     }
 

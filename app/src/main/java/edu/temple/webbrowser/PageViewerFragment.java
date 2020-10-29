@@ -19,8 +19,6 @@ public class PageViewerFragment extends Fragment{
 
     WebView WebBrowser;
 
-
-
     public PageViewerFragment() {
         // Required empty public constructor
     }

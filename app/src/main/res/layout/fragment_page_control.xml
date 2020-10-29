@@ -13,59 +13,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/buttonNext"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="146dp"
-            android:layout_marginBottom="434dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/nextbutton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonBack"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGo" />
-
         <EditText
             android:id="@+id/URLbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="172dp"
-            android:layout_marginBottom="13dp"
+            android:layout_width="215dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="11dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/enter_url"
-            app:layout_constraintBottom_toTopOf="@+id/buttonBack"
-            app:layout_constraintEnd_toStartOf="@+id/buttonGo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageButton
+            android:id="@+id/buttonNext"
+            android:layout_width="107dp"
+            android:layout_height="53dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/nextbutton"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toBottomOf="@+id/URLbar" />
+
         <ImageButton
             android:id="@+id/buttonGo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="165dp"
-            android:layout_marginEnd="39dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="11dp"
             android:scaleType="fitCenter"
             android:src="@drawable/gobutton"
-            app:layout_constraintBottom_toTopOf="@+id/buttonNext"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/URLbar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/buttonBack"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="38dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="424dp"
+            android:layout_width="107dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="36dp"
             android:scaleType="fitCenter"
             android:src="@drawable/backbutton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonNext"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/URLbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
