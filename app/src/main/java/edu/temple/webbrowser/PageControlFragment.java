@@ -51,12 +51,48 @@ public class PageControlFragment extends Fragment {
 
         URLbar = v.findViewById(R.id.URLbar);
         goButton = v.findViewById(R.id.buttonGo);
-        backButton = v.findViewById(R.id.buttonBack);
         nextButton = v.findViewById(R.id.buttonNext);
+        backButton = v.findViewById(R.id.buttonBack);
 
-        goButton.setOnClickListener();
-        backButton.setOnClickListener();
-        nextButton.setOnClickListener();
+
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                ((visitPageInterface)getActivity()).visitPage(URLbar.getText().toString());
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                ((clickNextInterface)getActivity()).clickNext();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                ((clickBackInterface)getActivity()).clickBack();
+            }
+        });
+
+
+
         return v;
+    }
+
+    public void enterText(String text){
+        URLbar.setText(text);
+    }
+
+    public interface visitPageInterface{
+        void visitPage(String URL);
+    }
+
+    public interface clickNextInterface{
+        void clickNext();
+    }
+
+    public interface clickBackInterface{
+        void clickBack();
     }
 }
