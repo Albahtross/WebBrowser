@@ -49,18 +49,6 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
             transaction.commit();
         }
-        /*if(pageControlFrag==null){
-            pageControlFrag=new PageControlFragment();
-        }
-        if(browserControlFrag==null){
-            browserControlFrag = new BrowserControlFragment();
-        }
-        if (pagerFrag == null){
-            pagerFrag = new PagerFragment();
-        }
-        if (pageListFrag == null){
-            pageListFrag = new PageListFragment();
-        }*/
     }
 
     @Override
@@ -88,15 +76,21 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         pagerFrag.notifyDataSetChanged();
 
         pageControlFrag.setText("https://google.com");
+
         pageListFrag.addURL("https://google.com");
 
         pagerFrag.switchPages(pagerFrag.getSize() - 1);
+        getSupportActionBar().setTitle("https://google.com");
     }
 //asdfasdf
     @Override
     public void sendPageControlData(String str, String url){
         if (str.equals("visit")){
-            pagerFrag.currentPage().visitPage(url);
+            if(pagerFrag !=null){
+                pagerFrag.currentPage().visitPage(url);
+            } else{
+                pagerFrag.addPage();
+            }
         }
         else if (str.equals("next")){
             pagerFrag.currentPage().clickNext();
@@ -111,6 +105,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     public void sendPageListData(int i){
         pagerFrag.switchPages(i);
         pageControlFrag.setText(pagerFrag.currentPage().getURL());
+        getSupportActionBar().setTitle(pagerFrag.currentPage().getURL());
 
     }
 
@@ -119,11 +114,13 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         pagerFrag.switchPages(i);
         pageControlFrag.setText(pagerFrag.currentPage().getURL());
         pageListFrag.replaceURL(i, pagerFrag.currentPage().getURL());
+        getSupportActionBar().setTitle(pagerFrag.currentPage().getURL());
     }
 
     @Override
     public void sendPageViewData(){
         pageControlFrag.setText(pagerFrag.currentPage().getURL());
         pageListFrag.replaceURL(pagerFrag.getIndex(), pagerFrag.currentPage().getURL());
+        getSupportActionBar().setTitle(pagerFrag.currentPage().getURL());
     }
 }
