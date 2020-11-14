@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/browser_control">
 
         <fragment
-            android:id="@+id/control_frag"
+            android:id="@+id/page_control_frag"
             android:name="edu.temple.webbrowser.PageControlFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

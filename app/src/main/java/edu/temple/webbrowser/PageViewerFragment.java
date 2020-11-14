@@ -18,13 +18,14 @@ import android.webkit.WebViewClient;
 public class PageViewerFragment extends Fragment{
 
     WebView WebBrowser;
+    PageViewerListener listener;
 
     public PageViewerFragment() {
         // Required empty public constructor
     }
 
 
-    public static PageViewerFragment newInstance(String param1, String param2) {
+    public static PageViewerFragment newInstance() {
         PageViewerFragment fragment = new PageViewerFragment();
 
         return fragment;
@@ -49,6 +50,9 @@ public class PageViewerFragment extends Fragment{
             @Override
             public void onPageFinished(WebView view, String url){
                 ((PageViewerFragment.updateText) getActivity()).updateText();
+                if(listener!=null){
+                    listener.sendPageViewData();
+                }
             }
 
         });
@@ -77,6 +81,10 @@ public class PageViewerFragment extends Fragment{
             url = "https://" + url;
         }
         WebBrowser.loadUrl(url);
+    }
+
+    public interface PageViewerListener{
+        void sendPageViewData();
     }
 
     public interface updateText{

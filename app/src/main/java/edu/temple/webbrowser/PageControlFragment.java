@@ -1,5 +1,6 @@
 package edu.temple.webbrowser;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,8 @@ public class PageControlFragment extends Fragment {
     ImageButton nextButton;
     ImageButton backButton;
 
+    private PageControlListener listener;
+
     public PageControlFragment() {
         // Required empty public constructor
     }
@@ -32,7 +35,7 @@ public class PageControlFragment extends Fragment {
      *
      */
 
-    public static PageControlFragment newInstance(String param1, String param2) {
+    public static PageControlFragment newInstance() {
         PageControlFragment fragment = new PageControlFragment();
 
         return fragment;
@@ -41,6 +44,14 @@ public class PageControlFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        if(context instanceof PageControlListener){
+            listener = (PageControlListener) context;
+        }
     }
 
     @Override
@@ -58,30 +69,33 @@ public class PageControlFragment extends Fragment {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                ((visitPageInterface)getActivity()).visitPage(URLbar.getText().toString());
+                listener.sendPageControlData("visit", null);
             }
         });
 
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                ((clickNextInterface)getActivity()).clickNext();
+                listener.sendPageControlData("next", null);
             }
         });
 
         backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                ((clickBackInterface)getActivity()).clickBack();
+                listener.sendPageControlData("back", null);
             }
         });
-
-
 
         return v;
     }
 
+
     public void setText(String text){
         URLbar.setText(text);
+    }
+
+    public interface PageControlListener{
+        void sendPageControlData(String str, String url);
     }
 
     public interface visitPageInterface{
