@@ -17,8 +17,7 @@ import android.widget.ImageButton;
  */
 public class BrowserControlFragment extends Fragment {
 
-    ImageButton createPageViewerButton;
-    
+    private BrowserControlListener listener;
 
     public BrowserControlFragment() {
         // Required empty public constructor
@@ -40,16 +39,26 @@ public class BrowserControlFragment extends Fragment {
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-
+        if (context instanceof BrowserControlFragment.BrowserControlListener){
+            listener = (BrowserControlFragment.BrowserControlListener) context;
+        }
     }
 
+    public interface BrowserControlListener{
+        void sendBrowserControlData();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_browser_control, container, false);
-        createPageViewerButton = v.findViewById(R.id.pageViewButton);
+        ImageButton createPageViewerButton = v.findViewById(R.id.createPageViewButton);
+        createPageViewerButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                listener.sendBrowserControlData();
+            }
+        });
         return v;
     }
 }
