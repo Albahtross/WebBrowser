@@ -53,7 +53,7 @@ public class PageControlFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState){
-        outState.putString("url", URLbar.getText().getClass().toString());
+        outState.putString("url", URLbar.getText().toString());
         super.onSaveInstanceState(outState);
     }
 
@@ -80,7 +80,7 @@ public class PageControlFragment extends Fragment {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                listener.sendPageControlData("visit", null);
+                listener.sendPageControlData("visit", URLbar.getText().toString());
             }
         });
 

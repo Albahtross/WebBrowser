@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +55,7 @@ public class BrowserControlFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_browser_control, container, false);
         ImageButton createPageViewerButton = v.findViewById(R.id.createPageViewButton);
+        TextView textView = v.findViewById(R.id.textView);
         createPageViewerButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 listener.sendBrowserControlData();

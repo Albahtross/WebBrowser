@@ -28,7 +28,28 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browser_activity);
 
-        if(pageControlFrag==null){
+        if (savedInstanceState!=null){
+            browserControlFrag = (BrowserControlFragment) getSupportFragmentManager().getFragment(savedInstanceState,"browserControlFrag");
+            pageControlFrag = (PageControlFragment) getSupportFragmentManager().getFragment(savedInstanceState,"pageControlFrag");
+            pagerFrag = (PagerFragment)getSupportFragmentManager().getFragment(savedInstanceState,"pagerFrag");
+            pageListFrag = (PageListFragment)getSupportFragmentManager().getFragment(savedInstanceState, "pageListFrag");
+        } else{
+            pageControlFrag = PageControlFragment.newInstance();
+            browserControlFrag = BrowserControlFragment.newInstance();
+            pagerFrag = PagerFragment.newInstance();
+            pageListFrag = PageListFragment.newInstance();
+
+            FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentTransaction transaction=fragmentManager.beginTransaction();
+
+            transaction.add(R.id.page_control,pageControlFrag);
+            transaction.add(R.id.page_list, pageListFrag);
+            transaction.add(R.id.browser_control, browserControlFrag);
+            transaction.add(R.id.page_viewer, pagerFrag);
+
+            transaction.commit();
+        }
+        /*if(pageControlFrag==null){
             pageControlFrag=new PageControlFragment();
         }
         if(browserControlFrag==null){
@@ -39,15 +60,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         }
         if (pageListFrag == null){
             pageListFrag = new PageListFragment();
-        }
-
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction transaction=fragmentManager.beginTransaction();
-
-        transaction.add(R.id.page_control,pageControlFrag).commit();
-        transaction.add(R.id.page_list, pageListFrag).commit();
-        transaction.add(R.id.browser_control, browserControlFrag).commit();
-        transaction.add(R.id.page_viewer, pagerFrag).commit();
+        }*/
     }
 
     @Override
@@ -79,7 +92,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
         pagerFrag.switchPages(pagerFrag.getSize() - 1);
     }
-
+//asdfasdf
     @Override
     public void sendPageControlData(String str, String url){
         if (str.equals("visit")){

@@ -3,6 +3,7 @@ package edu.temple.webbrowser;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -57,7 +58,7 @@ public class PagerFragment extends Fragment {
 
             }
             @Override
-            public int getItemPosition(Object object){
+            public int getItemPosition(@NonNull Object object){
                 if(pageViews.contains(object)){
                     return pageViews.indexOf(object);
                 } else{

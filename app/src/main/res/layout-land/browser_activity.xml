@@ -18,8 +18,8 @@
         <fragment
             android:id="@+id/page_control_frag"
             android:name="edu.temple.webbrowser.PageControlFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <FrameLayout
@@ -34,8 +34,8 @@
         <fragment
             android:id="@+id/view_frag"
             android:name="edu.temple.webbrowser.PageViewerFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <FrameLayout
@@ -50,8 +50,8 @@
         <fragment
             android:id="@+id/browser_control_frag"
             android:name="edu.temple.webbrowser.BrowserControlFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <FrameLayout
@@ -66,8 +66,8 @@
         <fragment
             android:id="@+id/page_list_frag"
             android:name="edu.temple.webbrowser.PageListFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
