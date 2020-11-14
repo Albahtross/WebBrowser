@@ -52,13 +52,13 @@ public class PageListFragment extends Fragment {
         }
     }
 
+
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
         this.context = context;
         if(context instanceof PageListListener){
             listener = (PageListListener) context;
-            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         }
     }
 
@@ -77,7 +77,7 @@ public class PageListFragment extends Fragment {
         urls.add(url);
         adapter.notifyDataSetChanged();
     }
-    public void insertURL(int i, String url){
+    public void replaceURL(int i, String url){
         urls.set(i, url);
         adapter.notifyDataSetChanged();
     }
@@ -89,7 +89,7 @@ public class PageListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page_list, container, false);
+        final View v = inflater.inflate(R.layout.fragment_page_list, container, false);
         list = v.findViewById(R.id.url_list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){

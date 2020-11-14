@@ -20,12 +20,9 @@ import java.util.ArrayList;
  */
 public class PagerFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    private ViewPager pager;
+    ViewPager pager;
     ArrayList<PageViewerFragment> pageViews;
-    private FragmentStatePagerAdapter fspAdapter;
+    FragmentStatePagerAdapter fspAdapter;
     PagerListener listener;
 
 
@@ -55,6 +52,18 @@ public class PagerFragment extends Fragment {
         }
 
         fspAdapter = new FragmentStatePagerAdapter(getFragmentManager()){
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object){
+
+            }
+            @Override
+            public int getItemPosition(Object object){
+                if(pageViews.contains(object)){
+                    return pageViews.indexOf(object);
+                } else{
+                    return POSITION_NONE;
+                }
+            }
             @Override
             public Fragment getItem(int position){
                 return pageViews.get(position);

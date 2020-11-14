@@ -8,10 +8,17 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.webkit.URLUtil;
 
-public class BrowserActivity extends AppCompatActivity implements PageControlFragment.clickBackInterface, PageControlFragment.visitPageInterface, PageControlFragment.clickNextInterface, PageViewerFragment.updateText, BrowserControlFragment.BrowserControlListener, PageListFragment.PageListListener, PagerFragment.PagerListener, PageControlFragment.PageControlListener, PageViewerFragment.PageViewerListener {
+public class BrowserActivity extends AppCompatActivity implements PageControlFragment.clickBackInterface,
+        PageControlFragment.visitPageInterface,
+        PageControlFragment.clickNextInterface,
+        PageViewerFragment.updateText,
+        BrowserControlFragment.BrowserControlListener,
+        PageListFragment.PageListListener,
+        PagerFragment.PagerListener,
+        PageControlFragment.PageControlListener,
+        PageViewerFragment.PageViewerListener {
 
         PageControlFragment pageControlFrag;
-        PageViewerFragment viewFrag;
         PagerFragment pagerFrag;
         PageListFragment pageListFrag;
         BrowserControlFragment browserControlFrag;
@@ -24,8 +31,8 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         if(pageControlFrag==null){
             pageControlFrag=new PageControlFragment();
         }
-        if(viewFrag==null){
-            viewFrag=new PageViewerFragment();
+        if(browserControlFrag==null){
+            browserControlFrag = new BrowserControlFragment();
         }
         if (pagerFrag == null){
             pagerFrag = new PagerFragment();
@@ -37,27 +44,24 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();
 
-
-        transaction.add(R.id.page_control,pageControlFrag);
-        transaction.add(R.id.page_viewer, viewFrag);
-        transaction.add(R.id.page_list, pageListFrag);
-        transaction.add(R.id.browser_control, browserControlFrag);
-        transaction.add(R.id.view_pager, pagerFrag);
-        transaction.commit();
+        transaction.add(R.id.page_control,pageControlFrag).commit();
+        transaction.add(R.id.page_list, pageListFrag).commit();
+        transaction.add(R.id.browser_control, browserControlFrag).commit();
+        transaction.add(R.id.page_viewer, pagerFrag).commit();
     }
 
     @Override
     public void clickBack(){
-        viewFrag.clickBack();
+        pagerFrag.currentPage().clickBack();
     }
     @Override
     public void clickNext(){
-        viewFrag.clickNext();
+        pagerFrag.currentPage().clickNext();
     }
 
     @Override
     public void visitPage(String url){
-        viewFrag.visitPage(url);
+        pagerFrag.currentPage().visitPage(url);
     }
 
     @Override
@@ -101,12 +105,12 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     public void sendPagerData(int i){
         pagerFrag.switchPages(i);
         pageControlFrag.setText(pagerFrag.currentPage().getURL());
-        pageListFrag.insertURL(i, pagerFrag.currentPage().getURL());
+        pageListFrag.replaceURL(i, pagerFrag.currentPage().getURL());
     }
 
     @Override
     public void sendPageViewData(){
         pageControlFrag.setText(pagerFrag.currentPage().getURL());
-        pageListFrag.insertURL(pagerFrag.getIndex(), pagerFrag.currentPage().getURL());
+        pageListFrag.replaceURL(pagerFrag.getIndex(), pagerFrag.currentPage().getURL());
     }
 }

@@ -1,5 +1,7 @@
 package edu.temple.webbrowser;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,9 +39,17 @@ public class PageViewerFragment extends Fragment{
     }
 
     @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        if(context instanceof PageViewerListener){
+            listener = (PageViewerListener) context;
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_page_viewer, container, false);
+        final View v = inflater.inflate(R.layout.fragment_page_viewer, container, false);
 
         WebBrowser = v.findViewById(R.id.WebBrowser);
 
@@ -50,14 +60,32 @@ public class PageViewerFragment extends Fragment{
             @Override
             public void onPageFinished(WebView view, String url){
                 ((PageViewerFragment.updateText) getActivity()).updateText();
-                if(listener!=null){
+            }
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap bm){
+                super.onPageStarted(view,url, bm);
+                if (listener != null){
                     listener.sendPageViewData();
                 }
             }
-
         });
 
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null){
+            WebBrowser.restoreState(savedInstanceState);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        WebBrowser.saveState(outState);
+        outState.putString("url", WebBrowser.getUrl());
     }
 
     public void clickNext(){

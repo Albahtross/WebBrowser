@@ -23,7 +23,7 @@ public class BrowserControlFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BrowserControlFragment newInstance(String param1, String param2) {
+    public static BrowserControlFragment newInstance() {
         return new BrowserControlFragment();
     }
 

@@ -47,6 +47,17 @@ public class PageControlFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        outState.putString("url", URLbar.getText().getClass().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onAttach(Context context){
         super.onAttach(context);
         if(context instanceof PageControlListener){
@@ -58,7 +69,7 @@ public class PageControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_page_control, container, false);
+        final View v = inflater.inflate(R.layout.fragment_page_control, container, false);
 
         URLbar = v.findViewById(R.id.URLbar);
         goButton = v.findViewById(R.id.buttonGo);
@@ -85,6 +96,10 @@ public class PageControlFragment extends Fragment {
                 listener.sendPageControlData("back", null);
             }
         });
+
+        if(savedInstanceState!=null){
+            URLbar.setText(savedInstanceState.getString("url"));
+        }
 
         return v;
     }
